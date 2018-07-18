@@ -1,7 +1,7 @@
 var $ = require('jquery');
 require('jquery-ui');
-import { addCardData, deleteCardData } from '../service/toDoListModalService';
-import { getCards, cardListData } from '../service/getCards'
+import   * as todoListModalService from '../service/toDoListModalService';
+import * as getCardsService from '../service/getCards'
 
 var addItemBtn = document.getElementById('addNewItem');
 addItemBtn.addEventListener('click', onAddBtnClick);
@@ -73,13 +73,13 @@ export function onSaveNewCardBtnClick() {
         });
     }
 
-    addCardData(cardInfo, onDataSave, editModeId);
+    todoListModalService.addCardData(cardInfo, onDataSave, editModeId);
 }
 
 export function openEditModal(index) {
     editMode = true;
     editModeId = index;
-    let cardInfo = cardListData[index];
+    let cardInfo = getCardsService.cardListData[index];
     $('#todoListTitle').val(cardInfo.card.name);
     $("ul#taskList-ul").empty();
 
@@ -112,17 +112,17 @@ var deletebtn = document.getElementById('deleteConfirmbtn');
 deletebtn.addEventListener('click', onDeleteClick);
 
 function onDeleteClick(e) {
-    deleteCardData(onDataDelete, deleteIndex);
+    todoListModalService.deleteCardData(onDataDelete, deleteIndex);
 }
 
 function onDataDelete() {
     $('#deleteConfirmationModal').modal('hide');
-    getCards();
+    getCardsService.getCards();
 }
 
 function onDataSave() {
     $('#addListCardModal').modal('hide');
-    getCards();
+    getCardsService.getCards();
 }
 
 $('#addListCardModal').on('hidden.bs.modal', function (e) {

@@ -1,16 +1,12 @@
 
 var $ = require('jquery');
-
-
+import 'jquery-ui';
 import 'bootstrap'
 import '../styles/sass/styles.scss';
-
-import {getCards, cardListData} from './service/getCards';
-import {onAddBtnClick, onSaveNewCardBtnClick} from './controller/toDoListModal';
-
+import * as cardService from './service/getCards';
 
 $( document ).ready(function() {
     
-    getCards();
+    cardService.getCards();
     
 });

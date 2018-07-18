@@ -1,4 +1,4 @@
-
+var $ = require('jquery');
 import { openEditModal, openConfirmation } from './toDoListModal';
 
 export function addCard(cardData) {
