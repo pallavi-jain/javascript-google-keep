@@ -7,7 +7,7 @@ export function addCardData(cardObj, callback,id){
     var type = "POST";
     if(id){
         url = "http://localhost:3000/lists/"+id;
-        type = "PUT"
+        type = "PATCH"
     }
 
     $.ajax({
@@ -20,11 +20,6 @@ export function addCardData(cardObj, callback,id){
            
             
           },
-        // beforeSend: function(x) {
-        //   if (x && x.overrideMimeType) {
-        //     x.overrideMimeType("application/j-son;charset=UTF-8");
-        //   }
-        // },
         success: function(result) {
         //Write your code here
         callback(result);

@@ -1,6 +1,6 @@
 var $ = require('jquery');
 import { openEditModal, openConfirmation } from './toDoListModal';
-
+import * as saveCardState from '../service/saveCardState';
 export function addCard(cardData) {
 
     var cardId = cardData.id;
@@ -64,6 +64,17 @@ export function addCard(cardData) {
         openConfirmation(index);
     });
 }
+
+export var cardsData = {};
+
+$( "#cardList" ).on( "sortstop", function( event, ui ) {
+
+    $("#cardList .card").each(function (index) {
+        cardsData[$(this).attr('id')].card.order = index+1;
+        saveCardState.saveCardState($(this).attr('id'), cardsData[$(this).attr('id')]);
+    });
+    
+} );
 
 
 
